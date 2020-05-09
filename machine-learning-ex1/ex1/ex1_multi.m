@@ -3,11 +3,11 @@
 %
 %  Instructions
 %  ------------
-% 
-%  This file contains code that helps you get started on the
-%  linear regression exercise. 
 %
-%  You will need to complete the following functions in this 
+%  This file contains code that helps you get started on the
+%  linear regression exercise.
+%
+%  You will need to complete the following functions in this
 %  exericse:
 %
 %     warmUpExercise.m
@@ -29,7 +29,7 @@
 %% ================ Part 1: Feature Normalization ================
 
 %% Clear and Close Figures
-clear ; close all; clc
+clear; close all; clc
 
 fprintf('Loading data ...\n');
 
@@ -53,7 +53,6 @@ fprintf('Normalizing Features ...\n');
 
 % Add intercept term to X
 X = [ones(m, 1) X];
-
 
 %% ================ Part 2: Gradient Descent ================
 
@@ -85,7 +84,10 @@ fprintf('Running gradient descent ...\n');
 alpha = 0.01;
 num_iters = 400;
 
-% Init Theta and Run Gradient Descent 
+% alpha = 0.15;
+% num_iters = 50;
+
+% Init Theta and Run Gradient Descent
 theta = zeros(3, 1);
 [theta, J_history] = gradientDescentMulti(X, y, theta, alpha, num_iters);
 
@@ -104,13 +106,14 @@ fprintf('\n');
 % ====================== YOUR CODE HERE ======================
 % Recall that the first column of X is all-ones. Thus, it does
 % not need to be normalized.
-price = 0; % You should change this
-
+% price = 0; % You should change this
+prediction = computeCostMulti(X,y,theta)
+price = prediction %*theta
 
 % ============================================================
 
 fprintf(['Predicted price of a 1650 sq-ft, 3 br house ' ...
-         '(using gradient descent):\n $%f\n'], price);
+        '(using gradient descent):\n $%f\n'], price);
 
 fprintf('Program paused. Press enter to continue.\n');
 pause;
@@ -120,12 +123,12 @@ pause;
 fprintf('Solving with normal equations...\n');
 
 % ====================== YOUR CODE HERE ======================
-% Instructions: The following code computes the closed form 
+% Instructions: The following code computes the closed form
 %               solution for linear regression using the normal
-%               equations. You should complete the code in 
+%               equations. You should complete the code in
 %               normalEqn.m
 %
-%               After doing so, you should complete this code 
+%               After doing so, you should complete this code
 %               to predict the price of a 1650 sq-ft, 3 br house.
 %
 
@@ -149,11 +152,12 @@ fprintf('\n');
 
 % Estimate the price of a 1650 sq-ft, 3 br house
 % ====================== YOUR CODE HERE ======================
-price = 0; % You should change this
+% price = 0; % You should change this
 
+prediction = [1 1650 3];
+price = prediction * theta;
 
 % ============================================================
 
 fprintf(['Predicted price of a 1650 sq-ft, 3 br house ' ...
-         '(using normal equations):\n $%f\n'], price);
-
+        '(using normal equations):\n $%f\n'], price);
