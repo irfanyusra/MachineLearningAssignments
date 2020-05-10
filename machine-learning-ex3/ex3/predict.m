@@ -21,12 +21,25 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
+% fprintf('\nX: %f\n', X(1:10));
+% fprintf('\nXEnd: %f\n', X(end-10: end));
+% fprintf('\nTheta1: %f\n', Theta1);
+% fprintf('\nTheta1End: %f\n', Theta1(end-10: end));
+% fprintf('\nTheta2: %f\n', Theta2(1:10));
+% fprintf('\nTheta2End: %f\n', Theta2(end-10:end));
 
-temp = [ones(m, 1) sigmoid([ones(m, 1) X] * Theta1')];
-[maxTemp, maxTemp_2] = max((sigmoid(temp * Theta2'))');
-p = maxTemp_2';
-
-
+temp1 = [ones(m, 1) X];
+temp2 = [ones(m, 1) sigmoid(temp1 * Theta1')];
+% fprintf('\nones: %f\n', (sigmoid(temp1 * Theta1'))(1:10));
+% fprintf('\no sig: %f\n', (temp1 * Theta1')(1:10));
+% fprintf('\nfirst: ', disp((temp1 * Theta1')(1:10)));
+% disp("The value of pi is:"), disp((temp1 * Theta1')(1:10))
+% fprintf('\nones: %f\n', (temp1 * Theta1')(end - 20:end));
+temp3 = sigmoid(temp2 * Theta2');
+[maxTemp3, maxTemp3_2] = max(temp3');
+p = maxTemp3_2';
+fprintf('p: %f\n', (temp3)(end-10:end));
+% fprintf('pend: %f\n', p(end-10:end));
 
 
 

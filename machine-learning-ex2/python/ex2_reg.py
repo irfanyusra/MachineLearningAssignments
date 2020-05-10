@@ -21,12 +21,15 @@ def sigmoid(x):
     return 1/(1+np.exp(-x))
 
 
-def costFunctionReg(theta_t, X_t, y_t, lambda_t):
-    m = len(y_t)
-    J = (-1/m) * (y_t.T @ np.log(sigmoid(X_t @ theta_t)) +
-                  (1 - y_t.T) @ np.log(1 - sigmoid(X_t @ theta_t)))
+def costFunctionReg(theta, X, y, lmbda):
+    m = len(y)
+    # J = (-1/m) * (y_t.T @ np.log(sigmoid(X_t @ theta_t)) +
+    #               (1 - y_t.T) @ np.log(1 - sigmoid(X_t @ theta_t)))
 
-    reg = (lambda_t/(2*m)) * (theta_t[1:].T @ theta_t[1:])
+    temp1 = np.multiply(y, np.log(sigmoid(np.dot(X, theta))))
+    temp2 = np.multiply(1-y, np.log(1-sigmoid(np.dot(X, theta))))
+    J = np.sum(temp1 + temp2) / (-m)
+    reg = (lmbda/(2*m)) * (theta[1:].T @ theta[1:])
     J = J + reg
     return J
 
@@ -81,14 +84,14 @@ X = mapFeature(X.iloc[:, 0], X.iloc[:, 1])
 y = y[:, np.newaxis]
 theta = np.zeros((n, 1))
 lmbda = 1
-# cost = costFunctionReg(theta, X, y, lmbda)
-# grad = gradientDescentReg(theta, X, y, lmbda)
-# print('Cost at initial theta (zeros): ', cost)
-# print('Expected cost (approx): 0.693\n')
-# print(
-#     'Gradient at initial theta (zeros) - first five values only: \n', grad[0:5])
-# print('Expected gradients (approx) - first five values only:')
-# print(' 0.0085\n 0.0188\n 0.0001\n 0.0503\n 0.0115\n')
+cost = costFunctionReg(theta, X, y, lmbda)
+grad = gradientDescentReg(theta, X, y, lmbda)
+print('Cost at initial theta (zeros): ', cost)
+print('Expected cost (approx): 0.693\n')
+print(
+    'Gradient at initial theta (zeros) - first five values only: \n', grad[0:5])
+print('Expected gradients (approx) - first five values only:')
+print(' 0.0085\n 0.0188\n 0.0001\n 0.0503\n 0.0115\n')
 
 # Optimizing theta
 output = opt.fmin_tnc(
