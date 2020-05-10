@@ -1,0 +1,12 @@
+
+
+
+----------Excercise 2-------------
+Classification problems: 
+- Logistical regression: 
+--- used for data that can be seperated using a line 
+--- finds a linear decision boundary
+--- ex2.py
+- Regularized logistic regression
+--- A logistic regression classifier trained on this higher-dimension feature vector will have a more complex decision boundary and will appear nonlinear when drawn in our 2-dimensional plot.
+--- susceptible to over fitting

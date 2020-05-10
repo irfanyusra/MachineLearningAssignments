@@ -97,7 +97,8 @@ initial_theta = np.zeros((n+1, 1))  # intializing theta with all zeros
 
 # print (y.flatten())
 temp = opt.fmin_tnc(func=costFunction,
-                    x0=initial_theta.flatten(), fprime=gradient,
+                    x0=initial_theta.flatten(),
+                    fprime=gradient,
                     args=(X, y.flatten()))
 # the output of above function is a tuple whose first element contains the optimized values of theta
 theta_optimized = temp[0]
@@ -111,6 +112,7 @@ print('Expected cost (approx): 0.203')
 print('theta: \n', theta_optimized)
 print('Expected theta (approx):\n -25.161\n 0.206\n 0.201\n')
 
+# Plot Boundary
 
 plot_x = [np.min(X[:, 1]-2), np.max(X[:, 2]+2)]
 plot_y = -1/theta_optimized[2]*(theta_optimized[0]
