@@ -92,7 +92,7 @@ xarr = np.hstack((ones, xarr))
 
 # given
 theta = np.zeros((2, 1))
-iterations = 1500
+iterations = 2000
 alpha = 0.01
 
 print('Testing the cost function ...\n')
